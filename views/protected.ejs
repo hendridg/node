@@ -1,6 +1,40 @@
 <!DOCTYPE html>
 <html lang="en">
 
+<style>
+  /* Estilos generales */
+  body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f4f4f4;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    height: 100vh;
+  }
+
+  section {
+    margin-top: 30px;
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    width: 350px;
+    margin: 0 auto;
+    background-color: white;
+    text-align: left;
+  }
+
+  button {
+    background-color: #4CAF50;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+</style>
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -8,9 +42,13 @@
 </head>
 
 <body>
-  <h1>Hola <%= username %>
-  </h1>
-  <h3>Esta es una página protegida</h3>
+  <section>
+
+    <h3>Hola <%= username %>
+    </h3>
+    <p>Esta es una página protegida</p>
+    <button onclick="window.location.href = '/'">Ir a Home</button>
+  </section>
 </body>
 
 </html>

@@ -11,6 +11,10 @@
     margin: 0;
     padding: 0;
     background-color: #f4f4f4;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    height: 100vh;
   }
 
   section {
@@ -23,7 +27,7 @@
     margin-top: 30px;
     padding: 20px;
     border: 1px solid #ccc;
-    border-radius: 5px;
+    border-radius: 10px;
     max-width: 350px;
     margin: 0 auto;
     background-color: white;
@@ -59,7 +63,7 @@
   }
 </style>
 <script>
-  function submitForm() {
+  function loginForm() {
     // Obtener los valores de los campos de entrada
     var username = document.getElementById("username").value;
     var password = document.getElementById("password").value;
@@ -112,6 +116,38 @@
       });
 
   }
+
+  function registerForm() {
+    // Obtener los valores de los campos de entrada
+    var username = document.getElementById("username-register").value;
+    var password = document.getElementById("password-register").value;
+
+    // Realizar alguna lógica con los valores obtenidos
+    if (username === "" || password === "") {
+      alert("Por favor, completa todos los campos");
+      return;
+    }
+    // Realizar una solicitud POST al servidor con los valores de registro
+    fetch("/register", {
+      method: "POST",
+      body: JSON.stringify({ username, password }),
+      headers: {
+        "Content-Type": "application/json"
+      },
+    })
+      .then(response => {
+        if (response.ok) {
+          // Redirigir al usuario a otra página después de registrarse exitosamente
+          window.location.href = "/";
+        } else {
+          // Mostrar un mensaje de error si el registro falla
+          alert("Error al registrarse. Por favor, inténtalo de nuevo.");
+        }
+      })
+      .catch(error => {
+        console.error("Error al realizar la solicitud:", error);
+      });
+  }
 </script>
 
 <body>
@@ -138,26 +174,21 @@
             <label for="password">Contraseña:</label>
             <input type="password" id="password" name="password" required>
           </div>
-          <button type="button" onclick="submitForm()">Iniciar sesión</button>
+          <button type="button" onclick="loginForm()">Iniciar sesión</button>
         </form>
       </section>
       <section>
         <!-- Formulario de registro -->
-        <form action="/register" method="POST" class="form-style">
+        <form class="form-style">
           <h2>Registro</h2>
           <div>
-            <label for="name">Nombre:</label>
-            <input type="text" id="name" name="name" required>
-          </div>
-          <div>
-            <label for="email">Correo electrónico:</label>
-            <input type="email" id="email" name="email" required>
-          </div>
-          <div>
-            <label for="password">Contraseña:</label>
-            <input type="password" id="password" name="password" required>
-          </div>
-          <button type="button">Registrarse</button>
+            <label for="username">Usuario:</label>
+            <input type="text" id="username-register" name="username" required>
+            <div>
+              <label for="password">Contraseña:</label>
+              <input type="password" id="password-register" name="password" required>
+            </div>
+            <button type="button" onclick="registerForm()">Registrarse</button>
         </form>
       </section>
       <% } %>
