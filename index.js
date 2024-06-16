@@ -84,3 +84,8 @@ app.get('/protected', async (req, res) => {
 app.listen(PORT, () => {
   console.log(`Server is running on port ${PORT}`)
 })
+
+/**
+ * @TODO:
+ * - Implement FORBIDDEN authorization for protected route with user role
+ */
