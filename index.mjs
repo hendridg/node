@@ -2,10 +2,11 @@ import express from "express";
 import jwt from "jsonwebtoken";
 import cookieParser from "cookie-parser";
 import { PORT, JWT_SECRET } from "./config.mjs";
-import { UserRepository } from "./user-repository.js";
+import { UserRepository } from "./user-repository.mjs";
 
 const app = express();
 
+// Set the view engine to ejs
 app.set("view engine", "ejs");
 
 app.use(express.json());
